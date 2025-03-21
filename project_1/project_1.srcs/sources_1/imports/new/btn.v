@@ -2,6 +2,8 @@ module btn_debounce(
     input clk,
     input reset,
     input i_btn,
+    input rx_done,       // UART RX 완료 신호 추가
+    input [7:0] rx_data, // UART RX 데이터 추가
     output o_btn
 );
     //state
@@ -9,11 +11,15 @@ module btn_debounce(
     reg edge_detect;
     wire btn_debounce;
     
+    // RX 데이터 처리를 위한 레지스터 추가
+    reg prev_rx_done;
+    reg rx_btn_trigger;
+    
     //1khz clk 
-    reg [16:0] counter;  // 더 넓은 카운터 비트 범위
+    reg [16:0] counter;
     reg r_1khz;
     
-    // 클럭 분주기 (더 안정적으로)
+    // 클럭 분주기
     always @(posedge clk or posedge reset) begin
         if(reset) begin
             counter <= 0;
@@ -29,12 +35,29 @@ module btn_debounce(
         end
     end
     
-    // 시프트 레지스터 로직
+    // UART RX 처리 로직 추가
+    always @(posedge clk or posedge reset) begin
+        if(reset) begin
+            prev_rx_done <= 1'b0;
+            rx_btn_trigger <= 1'b0;
+        end else begin
+            prev_rx_done <= rx_done;
+            
+            // RX_DONE의 상승 에지 감지 + 데이터가 'R' 또는 'r'인 경우
+            if(rx_done && !prev_rx_done && (rx_data == 8'h52 || rx_data == 8'h72)) begin
+                rx_btn_trigger <= 1'b1;
+            end else begin
+                rx_btn_trigger <= 1'b0;
+            end
+        end
+    end
+    
+    // 시프트 레지스터 로직 - 하드웨어 버튼과 UART 트리거 OR 연산
     always @(posedge r_1khz or posedge reset) begin
         if(reset) begin
             q_reg <= 0;
         end else begin
-            q_reg <= {i_btn, q_reg[7:1]};  // 올바른 시프트 연산
+            q_reg <= {(i_btn || rx_btn_trigger), q_reg[7:1]};  // 하드웨어 버튼 또는 UART 트리거
         end  
     end
     
