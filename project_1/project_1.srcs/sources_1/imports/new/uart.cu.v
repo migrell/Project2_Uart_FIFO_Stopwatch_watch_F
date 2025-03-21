@@ -52,6 +52,8 @@ module uart_cu(
    
    // 버튼 펄스 지속 시간
    reg [19:0] button_timer;           // 버튼 신호 지속 타이머
+   reg button_active;                 // 버튼 활성화 상태 플래그
+   reg button_cooldown;               // 버튼 쿨다운 상태 플래그
 
    // 디바운스 관련 레지스터
    reg [7:0] rx_data_shift_reg;       // 시프트 레지스터
@@ -113,44 +115,46 @@ module uart_cu(
    
    // 명령 에지 감지 (상승 에지에서 명령 처리)
    assign rx_cmd_edge = rx_data_debounced & rx_done_reg & (~rx_edge_detect);
-   
-   // 버튼 타이머 관리 로직 - 단일 always 블록에서 처리
-   always @(posedge clk or posedge reset) begin
-       if (reset) begin
-           button_timer <= 20'd0;
-           btn_hour <= 1'b0;
-           btn_min <= 1'b0;
-           btn_sec <= 1'b0;
-           timer_start <= 1'b0;
-           btn_sel <= 2'b00;
-       end else begin
-           // 타이머 시작 신호가 발생한 경우
-           if (timer_start) begin
-               // 짧은 펄스로 수정 - 1시간, 1분, 1초만 증가하도록
-               button_timer <= 20'd1000;  // 약 10us 정도의 매우 짧은 시간 (100MHz 클록 기준)
-               timer_start <= 1'b0;        // 시작 신호 클리어
-               
-               // 버튼 선택에 따라 출력 신호 설정
-               case (btn_sel)
-                   2'b01: begin btn_hour <= 1'b1; btn_min <= 1'b0; btn_sec <= 1'b0; end
-                   2'b10: begin btn_hour <= 1'b0; btn_min <= 1'b1; btn_sec <= 1'b0; end
-                   2'b11: begin btn_hour <= 1'b0; btn_min <= 1'b0; btn_sec <= 1'b1; end
-                   default: begin btn_hour <= 1'b0; btn_min <= 1'b0; btn_sec <= 1'b0; end
-               endcase
-           end
-           // 타이머 카운트 다운
-           else if (button_timer > 0) begin
-               button_timer <= button_timer - 1;
-               if (button_timer == 1) begin
-                   // 타이머가 0에 도달하면 모든 버튼 신호 끄기
-                   btn_hour <= 1'b0;
-                   btn_min <= 1'b0;
-                   btn_sec <= 1'b0;
-               end
-           end
-       end
-   end
-   
+    
+    // 개선된 버튼 타이머 관리 로직
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        button_timer <= 20'd0;
+        btn_hour <= 1'b0;
+        btn_min <= 1'b0;
+        btn_sec <= 1'b0;
+        button_active <= 1'b0;
+        button_cooldown <= 1'b0;
+    end else begin
+        // 기본값으로 모든 버튼 비활성화
+        btn_hour <= 1'b0;
+        btn_min <= 1'b0;
+        btn_sec <= 1'b0;
+        
+        // 타이머 시작 신호가 발생하고 버튼이 비활성 상태인 경우
+        if (timer_start && !button_active && !button_cooldown) begin
+            button_active <= 1'b1;
+            button_timer <= 20'd50000;  // 쿨다운 타이머 설정 (0.5ms)
+            
+            // 버튼 선택에 따라 단 한 클럭 사이클 동안만 신호 활성화
+            case (btn_sel)
+                2'b01: btn_hour <= 1'b1;
+                2'b10: btn_min <= 1'b1;
+                2'b11: btn_sec <= 1'b1;
+                default: ; // 아무 버튼도 활성화하지 않음
+            endcase
+        end
+        // 타이머 카운트 다운
+        else if (button_timer > 0) begin
+            button_timer <= button_timer - 1;
+            
+            if (button_timer == 1) begin
+                button_active <= 1'b0;
+                button_cooldown <= 1'b0;  // 쿨다운 종료
+            end
+        end
+    end
+end
    // 상태 레지스터 업데이트
    always @(posedge clk or posedge reset) begin
        if (reset) begin
@@ -260,21 +264,21 @@ module uart_cu(
                            end
                            
                            CMD_HOUR, CMD_HOUR_LOWER: begin
-                               if (current_state[1] == 1'b1) begin  // 시계 모드에서만
+                               if (current_state[1] == 1'b1 && !button_active && !button_cooldown) begin  // 시계 모드 & 버튼 비활성 상태
                                    btn_sel <= 2'b01;  // hour 버튼 선택
                                    timer_start <= 1'b1;  // 타이머 시작 신호 활성화
                                end
                            end
                            
                            CMD_MIN, CMD_MIN_LOWER: begin
-                               if (current_state[1] == 1'b1) begin  // 시계 모드에서만
+                               if (current_state[1] == 1'b1 && !button_active && !button_cooldown) begin  // 시계 모드 & 버튼 비활성 상태
                                    btn_sel <= 2'b10;  // min 버튼 선택
                                    timer_start <= 1'b1;  // 타이머 시작 신호 활성화
                                end
                            end
                            
                            CMD_SEC, CMD_SEC_LOWER: begin
-                               if (current_state[1] == 1'b1) begin  // 시계 모드에서만
+                               if (current_state[1] == 1'b1 && !button_active && !button_cooldown) begin  // 시계 모드 & 버튼 비활성 상태
                                    btn_sel <= 2'b11;  // sec 버튼 선택
                                    timer_start <= 1'b1;  // 타이머 시작 신호 활성화
                                end
