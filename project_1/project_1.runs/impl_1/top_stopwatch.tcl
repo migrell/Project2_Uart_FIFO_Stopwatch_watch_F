@@ -143,7 +143,6 @@ OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
   add_files -quiet C:/Users/parkj/Desktop/Verilog_project_test/project_1/project_1.runs/synth_1/top_stopwatch.dcp
 OPTRACE "read constraints: implementation" START { }
-  read_xdc C:/Users/parkj/Desktop/Verilog_project_test/project_1/project_1.srcs/constrs_2/Basys-3-Master.xdc
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "add files" END { }
 OPTRACE "link_design" START { }

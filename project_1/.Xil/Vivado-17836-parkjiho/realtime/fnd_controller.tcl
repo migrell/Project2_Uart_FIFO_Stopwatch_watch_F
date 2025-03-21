@@ -34,23 +34,11 @@ set rt::rc [catch {
 
     set rt::useElabCache false
     if {$rt::useElabCache == false} {
-      rt::read_verilog {
-      C:/Users/parkj/Desktop/Verilog_project_test/project_1/project_1.srcs/sources_1/imports/new/btn.v
-      C:/Users/parkj/Desktop/Verilog_project_test/project_1/project_1.srcs/sources_1/imports/new/clock.v
-      C:/Users/parkj/Desktop/Verilog_project_test/project_1/project_1.srcs/sources_1/imports/new/cu.v
-      C:/Users/parkj/Desktop/Verilog_project_test/project_1/project_1.srcs/sources_1/imports/new/display.v
-      C:/Users/parkj/Desktop/Verilog_project_test/project_1/project_1.srcs/sources_1/imports/new/dp.v
-      C:/Users/parkj/Desktop/Verilog_project_test/project_1/project_1.srcs/sources_1/imports/new/fifo.v
-      C:/Users/parkj/Desktop/Verilog_project_test/project_1/project_1.srcs/sources_1/imports/new/fnd.v
-      C:/Users/parkj/Desktop/Verilog_project_test/project_1/project_1.srcs/sources_1/imports/new/fsm.v
-      C:/Users/parkj/Desktop/Verilog_project_test/project_1/project_1.srcs/sources_1/imports/new/uart.cu.v
-      C:/Users/parkj/Desktop/Verilog_project_test/project_1/project_1.srcs/sources_1/imports/new/uart.top.v
-      C:/Users/parkj/Desktop/Verilog_project_test/project_1/project_1.srcs/sources_1/imports/new/top.v
-    }
+      rt::read_verilog C:/Users/parkj/Desktop/Verilog_project_test/project_1/project_1.srcs/sources_1/imports/new/fnd.v
       rt::filesetChecksum
     }
     rt::set_parameter usePostFindUniquification false
-    set rt::top top_stopwatch
+    set rt::top fnd_controller
     rt::set_parameter enableIncremental true
     rt::set_parameter markDebugPreservationLevel "enable"
     set rt::reportTiming false

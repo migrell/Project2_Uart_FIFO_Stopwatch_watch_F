@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1742559934">
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1742560467">
   <File Type="PA-TCL" Name="top_stopwatch.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="top_stopwatch_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="top_stopwatch_reports.tcl"/>
@@ -157,14 +157,7 @@
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_2">
-    <File Path="$PSRCDIR/constrs_2/Basys-3-Master.xdc">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-      </FileInfo>
-    </File>
     <Config>
-      <Option Name="TargetConstrsFile" Val="$PSRCDIR/constrs_2/Basys-3-Master.xdc"/>
       <Option Name="ConstrsType" Val="XDC"/>
     </Config>
   </FileSet>

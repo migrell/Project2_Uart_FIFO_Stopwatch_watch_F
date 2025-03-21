@@ -113,9 +113,6 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc C:/Users/parkj/Desktop/Verilog_project_test/project_1/project_1.srcs/constrs_2/Basys-3-Master.xdc
-set_property used_in_implementation false [get_files C:/Users/parkj/Desktop/Verilog_project_test/project_1/project_1.srcs/constrs_2/Basys-3-Master.xdc]
-
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
 

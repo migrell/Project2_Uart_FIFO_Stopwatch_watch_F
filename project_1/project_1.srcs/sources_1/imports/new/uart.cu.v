@@ -64,6 +64,11 @@ module uart_cu(
    reg is_run_cmd;                    // Run 명령 감지 플래그
    reg run_toggle_pending;            // Run 토글 대기 플래그
    
+   // 버튼 제어 플래그 - button_timer 충돌 방지
+   reg set_hour_btn;                  // 시간 버튼 설정 플래그
+   reg set_min_btn;                   // 분 버튼 설정 플래그
+   reg set_sec_btn;                   // 초 버튼 설정 플래그
+   
    // 디바운스 로직 - btn_debounce 모듈과 유사한 방식
    always @(posedge clk or posedge reset) begin
        if (reset) begin
@@ -101,15 +106,6 @@ module uart_cu(
            end else if (state == PROCESS_CMD && run_toggle_pending) begin
                run_toggle_pending <= 1'b0;  // 처리 완료 후 클리어
            end
-           
-           // 버튼 타이머 처리
-           if (button_timer > 0) begin
-               button_timer <= button_timer - 1;
-           end else begin
-               btn_hour <= 1'b0;
-               btn_min <= 1'b0;
-               btn_sec <= 1'b0;
-           end
        end
    end
    
@@ -118,6 +114,68 @@ module uart_cu(
    
    // 명령 에지 감지 (상승 에지에서 명령 처리)
    assign rx_cmd_edge = rx_data_debounced & rx_done_reg & (~rx_edge_detect);
+   
+   // 버튼 플래그 설정 로직
+   always @(posedge clk or posedge reset) begin
+       if (reset) begin
+           set_hour_btn <= 1'b0;
+           set_min_btn <= 1'b0;
+           set_sec_btn <= 1'b0;
+       end else begin
+           // 기본적으로 모든 플래그를 초기화
+           set_hour_btn <= 1'b0;
+           set_min_btn <= 1'b0;
+           set_sec_btn <= 1'b0;
+           
+           // PROCESS_CMD 상태에서만 플래그 설정
+           if (state == PROCESS_CMD && cmd_read_done && current_state[1] == 1'b1) begin
+               case (cmd_reg)
+                   CMD_HOUR, CMD_HOUR_LOWER: set_hour_btn <= 1'b1;
+                   CMD_MIN, CMD_MIN_LOWER: set_min_btn <= 1'b1;
+                   CMD_SEC, CMD_SEC_LOWER: set_sec_btn <= 1'b1;
+                   default: begin end
+               endcase
+           end
+       end
+   end
+   
+   // 버튼 타이머 및 출력 신호 관리
+   always @(posedge clk or posedge reset) begin
+       if (reset) begin
+           button_timer <= 20'd0;
+           btn_hour <= 1'b0;
+           btn_min <= 1'b0;
+           btn_sec <= 1'b0;
+       end else begin
+           // 버튼 타이머 감소
+           if (button_timer > 0) begin
+               button_timer <= button_timer - 1;
+           end
+           
+           // 타이머가 0에 도달하면 버튼 신호 끄기
+           if (button_timer == 1) begin
+               btn_hour <= 1'b0;
+               btn_min <= 1'b0;
+               btn_sec <= 1'b0;
+           end
+
+           // 새 버튼 명령 처리
+           if (set_hour_btn) begin
+               btn_hour <= 1'b1;
+               button_timer <= 20'h8FFFF;  // 약 500ms 유지
+           end
+           
+           if (set_min_btn) begin
+               btn_min <= 1'b1;
+               button_timer <= 20'h8FFFF;  // 약 500ms 유지
+           end
+           
+           if (set_sec_btn) begin
+               btn_sec <= 1'b1;
+               button_timer <= 20'h8FFFF;  // 약 500ms 유지
+           end
+       end
+   end
    
    // 상태 레지스터 업데이트
    always @(posedge clk or posedge reset) begin
@@ -181,7 +239,7 @@ module uart_cu(
        endcase
    end
    
-   // 명령 처리 로직
+   // 명령 처리 로직 - 버튼 제어 제외
    always @(posedge clk or posedge reset) begin
        if (reset) begin
            w_rx_rd <= 1'b0;
@@ -189,11 +247,7 @@ module uart_cu(
            tx_wr <= 1'b0;
            w_run <= 1'b0;
            w_clear <= 1'b0;
-           btn_hour <= 1'b0;
-           btn_min <= 1'b0;
-           btn_sec <= 1'b0;
            sw <= 2'b00;
-           button_timer <= 20'd0;
        end else begin
            // 기본값으로 초기화
            w_rx_rd <= 1'b0;
@@ -218,41 +272,14 @@ module uart_cu(
                            w_run <= ~o_run;  // 현재 상태에 기반하여 토글
                        end
                    end
-                   // 다른 명령 처리
+                   // Clear 명령 처리 (버튼 제어는 별도 always 블록으로 분리)
                    else if (cmd_read_done) begin
-                       case (cmd_reg)
-                           CMD_CLEAR, CMD_CLEAR_LOWER: begin
-                               if (current_state[1] == 1'b0) begin  // 스톱워치 모드에서만
-                                   w_clear <= 1'b1;
-                                   w_run <= 1'b0;    // 실행 중이라면 정지
-                               end
+                       if (cmd_reg == CMD_CLEAR || cmd_reg == CMD_CLEAR_LOWER) begin
+                           if (current_state[1] == 1'b0) begin  // 스톱워치 모드에서만
+                               w_clear <= 1'b1;
+                               w_run <= 1'b0;    // 실행 중이라면 정지
                            end
-                           
-                           CMD_HOUR, CMD_HOUR_LOWER: begin
-                               if (current_state[1] == 1'b1) begin  // 시계 모드에서만
-                                   btn_hour <= 1'b1;
-                                   button_timer <= 20'h8FFFF;  // 약 500ms 유지
-                               end
-                           end
-                           
-                           CMD_MIN, CMD_MIN_LOWER: begin
-                               if (current_state[1] == 1'b1) begin  // 시계 모드에서만
-                                   btn_min <= 1'b1;
-                                   button_timer <= 20'h8FFFF;  // 약 500ms 유지
-                               end
-                           end
-                           
-                           CMD_SEC, CMD_SEC_LOWER: begin
-                               if (current_state[1] == 1'b1) begin  // 시계 모드에서만
-                                   btn_sec <= 1'b1;
-                                   button_timer <= 20'h8FFFF;  // 약 500ms 유지
-                               end
-                           end
-                           
-                           default: begin
-                               // 알 수 없는 명령 - 무시
-                           end
-                       endcase
+                       end
                    end
                end
                
