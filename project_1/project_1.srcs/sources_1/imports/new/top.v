@@ -7,6 +7,7 @@ module top_stopwatch (
     input btn_clear,  // 우측 버튼 - 스톱워치 초기화
     input btn_sec,  // 아래쪽 버튼 - 초 설정 (시계 모드)
     input btn_min,  // 위쪽 버튼 - 분 설정 (시계 모드)
+    input [1:0] hw_sw,  // 추가: 하드웨어 스위치 입력
     input rx,  // UART RX 입력 추가
     output tx,  // UART TX 출력 추가
     output [3:0] fnd_comm,
@@ -37,6 +38,9 @@ module top_stopwatch (
     // UART RX 신호 (수정 전 없었던 부분)
     wire w_rx_done;      // RX 완료 신호
     wire [7:0] w_rx_data; // RX 데이터
+
+    // 하드웨어와 UART 스위치 신호 결합
+    wire [1:0] combined_sw = hw_sw | uart_sw;  // 두 스위치 신호 중 하나라도 1이면 1
 
     // 최종 버튼 신호 (하드웨어 버튼 + UART 명령)
     wire final_btn_hour = (w_btn_hour | uart_btn_hour) & is_clock_mode; // 시계 모드 조건 추가
@@ -111,11 +115,12 @@ module top_stopwatch (
         .w_rx_data(w_rx_data)
     );
 
+
     // FSM 컨트롤러 - 포트 이름 수정
     fsm_controller U_FSM (
         .clk(clk),
         .reset(reset),
-        .sw(uart_sw),  // 기존 'sw'를 'uart_sw'로 연결
+        .sw(combined_sw),  // 변경: combined_sw로 연결
         .btn_run(w_btn_run | uart_w_run),  // 하드웨어 버튼 또는 UART 명령
         .sw_mode_in(is_clock_mode),  // 필요에 따라 적절한 신호 연결
         .current_state(current_state),
