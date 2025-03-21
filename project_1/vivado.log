@@ -867,3 +867,10 @@ launch_runs impl_1 -to_step write_bitstream -jobs 8
 Run output will be captured here: C:/Users/parkj/Desktop/Verilog_project_test/project_1/project_1.runs/synth_1/runme.log
 [Fri Mar 21 21:34:27 2025] Launched impl_1...
 Run output will be captured here: C:/Users/parkj/Desktop/Verilog_project_test/project_1/project_1.runs/impl_1/runme.log
+reorder_files -fileset constrs_1 -after C:/verilog/Basys-3-Master.xdc C:/verilog/Basys-3-Master.xdc
+reset_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Fri Mar 21 21:36:47 2025] Launched impl_1...
+Run output will be captured here: C:/Users/parkj/Desktop/Verilog_project_test/project_1/project_1.runs/impl_1/runme.log
+exit
+INFO: [Common 17-206] Exiting Vivado at Fri Mar 21 21:37:37 2025...
