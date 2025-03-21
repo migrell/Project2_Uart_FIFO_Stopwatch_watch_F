@@ -1,0 +1,22 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Fri Mar 21 20:24:45 2025
+# Process ID: 22128
+# Current directory: C:/Users/parkj/Desktop/Verilog_project_test/project_1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent25636 C:\Users\parkj\Desktop\Verilog_project_test\project_1\project_1.xpr
+# Log file: C:/Users/parkj/Desktop/Verilog_project_test/project_1/vivado.log
+# Journal file: C:/Users/parkj/Desktop/Verilog_project_test/project_1\vivado.jou
+#-----------------------------------------------------------
+start_guioopen_project C:/Users/parkj/Desktop/Verilog_project_test/project_1/project_1.xpr
+WARNING: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'C:/Users/parkj/Desktop/Verilog_project_test/project_1/project_1.gen/sources_1'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/migtell/Vivado/2020.2/data/ip'.
+open_project: Time (s): cpu = 00:00:09 add_files -fileset constrs_1 -norecurse C:/verilog/Basys-3-Master.xdc
+exit
+INFO: [Common 17-206] Exiting Viexit
+INFO: [Common 17-206] Exiting Vivado at Fri Mar 21 20:26:03 2025...
