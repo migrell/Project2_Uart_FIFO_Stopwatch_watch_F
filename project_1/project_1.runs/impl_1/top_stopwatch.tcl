@@ -126,6 +126,7 @@ set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 3
   set_param synth.incrementalSynthesisCache C:/Users/parkj/Desktop/Verilog_project_test/project_1/.Xil/Vivado-17836-parkjiho/incrSyn
+  set_param xicom.use_bs_reader 1
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xc7a35tcpg236-1
   set_property board_part_repo_paths {C:/Users/parkj/AppData/Roaming/Xilinx/Vivado/2020.2/xhub/board_store/xilinx_board_store} [current_project]
@@ -142,7 +143,7 @@ OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
   add_files -quiet C:/Users/parkj/Desktop/Verilog_project_test/project_1/project_1.runs/synth_1/top_stopwatch.dcp
 OPTRACE "read constraints: implementation" START { }
-  read_xdc C:/verilog/Basys-3-Master.xdc
+  read_xdc C:/Users/parkj/Desktop/Verilog_project_test/project_1/project_1.srcs/constrs_2/Basys-3-Master.xdc
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "add files" END { }
 OPTRACE "link_design" START { }

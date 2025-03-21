@@ -18,11 +18,13 @@ module uart_fifo_top (
     
     // 상태 입력 (추가)
     input wire o_run,           // 현재 스톱워치 실행 상태
-    input wire [1:0] current_state  // 현재 FSM 상태
+    input wire [1:0] current_state,  // 현재 FSM 상태
+    
+    // 버튼 디바운싱용 신호 출력 (추가)
+    output wire w_rx_done,      // RX 완료 신호
+    output wire [7:0] w_rx_data // RX 데이터
 );
     // 내부 연결 신호
-    wire w_rx_done;      // RX 완료 신호
-    wire [7:0] w_rx_data; // RX 데이터
     wire w_tick;         // 보드레이트 틱 신호
     wire w_tx_done;      // TX 완료 신호
     
@@ -141,6 +143,7 @@ module uart_fifo_top (
         .empty(rx_fifo_empty)
     );
 endmodule
+
 module uart_tx (
     input clk,
     input rst,

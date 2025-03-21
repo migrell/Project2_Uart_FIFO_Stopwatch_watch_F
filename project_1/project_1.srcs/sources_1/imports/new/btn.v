@@ -47,7 +47,6 @@ module btn_debounce(
     assign o_btn = (i_btn & ~prev_btn) | ((rx_done & ~prev_rx_done) & cmd_match);
 endmodule
 
-
 // module btn_debounce(
 //     input clk,
 //     input reset,

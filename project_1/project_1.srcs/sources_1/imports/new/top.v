@@ -34,6 +34,9 @@ module top_stopwatch (
     wire [1:0] uart_sw;
     wire uart_w_run, uart_w_clear;
     wire uart_btn_hour, uart_btn_min, uart_btn_sec;
+    // UART RX 신호 (수정 전 없었던 부분)
+    wire w_rx_done;      // RX 완료 신호
+    wire [7:0] w_rx_data; // RX 데이터
 
     // 최종 버튼 신호 (하드웨어 버튼 + UART 명령)
     wire final_btn_hour = (w_btn_hour | uart_btn_hour) & is_clock_mode; // 시계 모드 조건 추가
@@ -49,71 +52,46 @@ module top_stopwatch (
     assign led[2] = w_run;  // 스톱워치 실행 중일 때 켜짐
     assign led[3] = is_clock_mode;  // 시계 모드일 때 켜짐
 
-    // 버튼 디바운싱 모듈들
-btn_debounce U_Btn_DB_RUN (
-    .clk(clk),
-    .reset(reset),
-    .i_btn(btn_run),
-    .rx_done(w_rx_done),         // 추가된 rx_done 입력
-    .rx_data(w_rx_data),         // 추가된 rx_data 입력
-    .o_btn(w_btn_run)
-);
+    // 버튼 디바운싱 모듈들 (btn_type 파라미터 적용)
+    btn_debounce U_Btn_DB_RUN (
+        .clk(clk),
+        .reset(reset),
+        .i_btn(btn_run),
+        .rx_done(w_rx_done),
+        .rx_data(w_rx_data),
+        .btn_type(3'd0),
+        .o_btn(w_btn_run)
+    );
 
-btn_debounce U_Btn_DB_CLEAR (
-    .clk(clk),
-    .reset(reset),
-    .i_btn(btn_clear),
-    .rx_done(w_rx_done),         // 추가된 rx_done 입력
-    .rx_data(w_rx_data),         // 추가된 rx_data 입력
-    .o_btn(w_btn_clear)
-);
+    btn_debounce U_Btn_DB_CLEAR (
+        .clk(clk),
+        .reset(reset),
+        .i_btn(btn_clear),
+        .rx_done(w_rx_done),
+        .rx_data(w_rx_data),
+        .btn_type(3'd1),
+        .o_btn(w_btn_clear)
+    );
 
-btn_debounce U_Btn_DB_SEC (
-    .clk(clk),
-    .reset(reset),
-    .i_btn(btn_sec),
-    .rx_done(w_rx_done),         // 추가된 rx_done 입력
-    .rx_data(w_rx_data),         // 추가된 rx_data 입력
-    .o_btn(w_btn_sec)
-);
+    btn_debounce U_Btn_DB_SEC (
+        .clk(clk),
+        .reset(reset),
+        .i_btn(btn_sec),
+        .rx_done(w_rx_done),
+        .rx_data(w_rx_data),
+        .btn_type(3'd2),
+        .o_btn(w_btn_sec)
+    );
 
-btn_debounce U_Btn_DB_MIN (
-    .clk(clk),
-    .reset(reset),
-    .i_btn(btn_min),
-    .rx_done(w_rx_done),         // 추가된 rx_done 입력
-    .rx_data(w_rx_data),         // 추가된 rx_data 입력
-    .o_btn(w_btn_min)
-);
-
-    // // 버튼 디바운싱 모듈들  ->원래 코드
-    // btn_debounce U_Btn_DB_RUN (
-    //     .clk  (clk),
-    //     .reset(reset),
-    //     .i_btn(btn_run),
-    //     .o_btn(w_btn_run)
-    // );
-
-    // btn_debounce U_Btn_DB_CLEAR (
-    //     .clk  (clk),
-    //     .reset(reset),
-    //     .i_btn(btn_clear),
-    //     .o_btn(w_btn_clear)
-    // );
-
-    // btn_debounce U_Btn_DB_SEC (
-    //     .clk  (clk),
-    //     .reset(reset),
-    //     .i_btn(btn_sec),
-    //     .o_btn(w_btn_sec)
-    // );
-
-    // btn_debounce U_Btn_DB_MIN (
-    //     .clk  (clk),
-    //     .reset(reset),
-    //     .i_btn(btn_min),
-    //     .o_btn(w_btn_min)
-    // );
+    btn_debounce U_Btn_DB_MIN (
+        .clk(clk),
+        .reset(reset),
+        .i_btn(btn_min),
+        .rx_done(w_rx_done),
+        .rx_data(w_rx_data),
+        .btn_type(3'd3),
+        .o_btn(w_btn_min)
+    );
 
     // UART + FIFO + CU 모듈 추가
     uart_fifo_top U_UART_FIFO_TOP (
@@ -128,7 +106,9 @@ btn_debounce U_Btn_DB_MIN (
         .btn_sec(uart_btn_sec),
         .sw(uart_sw),
         .o_run(w_run),
-        .current_state(current_state)
+        .current_state(current_state),
+        .w_rx_done(w_rx_done),
+        .w_rx_data(w_rx_data)
     );
 
     // FSM 컨트롤러 - 포트 이름 수정
