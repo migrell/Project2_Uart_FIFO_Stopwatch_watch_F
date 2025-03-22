@@ -5,7 +5,7 @@ module uart_cu(
    
    // FIFO 인터페이스 - 입력
    input  wire [7:0]  rx_fifo_rdata,    // RX FIFO에서 읽은 데이터
-   input  wire        rx_fifo_empty,    // RX FIFO 비어있음 상태
+   input  wire        rx_fifo_empty,    // RX FIFO 비어있음 상태 
    input  wire        tx_fifo_full,     // TX FIFO 가득참 상태
    
    // FIFO 인터페이스 - 출력
@@ -13,7 +13,7 @@ module uart_cu(
    output reg  [7:0]  tx_wdata,         // TX FIFO에 쓸 데이터
    output reg         tx_wr,            // TX FIFO 쓰기 신호
    
-   // 스톱워치 & 시계 제어 신호
+   // 스톱워치 & 시계 출력 신호
    output reg         w_run,            // 스톱워치 실행/정지
    output reg         w_clear,          // 스톱워치 초기화
    output reg         btn_hour,         // 시계 시간 증가
@@ -26,13 +26,13 @@ module uart_cu(
    input  wire [1:0]  current_state     // 현재 FSM 상태
 );
 
-   // FSM 상태 정의
-   localparam IDLE = 2'b00;
-   localparam READ_CMD = 2'b01;
-   localparam PROCESS_CMD = 2'b10;
-   localparam SEND_RESPONSE = 2'b11;
+   // FSM 상태 정의 
+   localparam IDLE = 2'b00; //대기상태
+   localparam READ_CMD = 2'b01; //명령 읽기 상태
+   localparam PROCESS_CMD = 2'b10; //명령 처리 상태
+   localparam SEND_RESPONSE = 2'b11; //응답 전송 상태
    
-   // 명령어 코드 정의
+   // 명령어 아스키 코드 정의
    localparam CMD_RUN = 8'h52;        // 'R'
    localparam CMD_RUN_LOWER = 8'h72;  // 'r'
    localparam CMD_CLEAR = 8'h43;      // 'C'
@@ -50,7 +50,7 @@ module uart_cu(
    reg [15:0] timeout_counter;        // 타임아웃 카운터
    reg cmd_read_done;                 // 명령 읽기 완료 플래그
    
-   // 버튼 펄스 지속 시간
+   // 버튼 펄스 지속 시간 -> 값이 1씩 증가하게 함 
    reg [19:0] button_timer;           // 버튼 신호 지속 타이머
    reg button_active;                 // 버튼 활성화 상태 플래그
    reg button_cooldown;               // 버튼 쿨다운 상태 플래그
