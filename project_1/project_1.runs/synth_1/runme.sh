@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/parkj/Desktop/Verilog_project_test/project_1/project_1.runs/synth_1'
+HD_PWD='C:/Users/parkj/Desktop/Project2_Uart_FIFO_Stopwatch_watch/project_1/project_1.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

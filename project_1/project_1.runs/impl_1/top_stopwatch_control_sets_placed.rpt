@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-| Date         : Fri Mar 21 22:40:20 2025
+| Date         : Sun Mar 23 11:24:38 2025
 | Host         : parkjiho running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_stopwatch_control_sets_placed.rpt
 | Design       : top_stopwatch
@@ -73,37 +73,37 @@ Table of Contents
 +---------------------------------------+---------------------------------------------------+------------------+------------------+----------------+--------------+
 |              Clock Signal             |                   Enable Signal                   | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
 +---------------------------------------+---------------------------------------------------+------------------+------------------+----------------+--------------+
-|  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/u_UART_Rx/rx_data_next[1]         | reset_IBUF       |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/u_UART_Rx/rx_data_next[5]         | reset_IBUF       |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/u_UART_Rx/rx_data_next[3]         | reset_IBUF       |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/u_UART_Rx/rx_data_next[2]         | reset_IBUF       |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/u_UART_Rx/rx_data_next[0]         | reset_IBUF       |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/u_UART_Rx/rx_data_next[7]         | reset_IBUF       |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/u_UART_Rx/rx_data_next[4]         | reset_IBUF       |                1 |              1 |         1.00 |
 |  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/u_UART_Rx/rx_data_next[6]         | reset_IBUF       |                1 |              1 |         1.00 |
-|  U_FND_CTRL/U_clk_divider/r_clk_reg_0 |                                                   | reset_IBUF       |                1 |              2 |         2.00 |
+|  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/u_UART_Rx/rx_data_next[2]         | reset_IBUF       |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/u_UART_Rx/rx_data_next[5]         | reset_IBUF       |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/u_UART_Rx/rx_data_next[7]         | reset_IBUF       |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/u_UART_Rx/rx_data_next[3]         | reset_IBUF       |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/u_UART_Rx/rx_data_next[4]         | reset_IBUF       |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/u_UART_Rx/rx_data_next[0]         | reset_IBUF       |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/u_UART_Rx/rx_data_next[1]         | reset_IBUF       |                1 |              1 |         1.00 |
 |  clk_IBUF_BUFG                        | U_FSM/current_state[1]_i_1_n_0                    | reset_IBUF       |                1 |              2 |         2.00 |
-|  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/u_UART_Rx/E[0]                    | reset_IBUF       |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/U_uart_tx/tick_count_next         | reset_IBUF       |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/U_uart_tx/E[0]                    | reset_IBUF       |                1 |              4 |         4.00 |
+|  U_FND_CTRL/U_clk_divider/r_clk_reg_0 |                                                   | reset_IBUF       |                1 |              2 |         2.00 |
 |  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/U_UART_CU/E[0]                    | reset_IBUF       |                1 |              4 |         4.00 |
 |  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/U_UART_CU/w_rx_rd_reg_0[0]        | reset_IBUF       |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/u_UART_Rx/E[0]                    | reset_IBUF       |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/U_uart_tx/E[0]                    | reset_IBUF       |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/U_uart_tx/tick_count_next         | reset_IBUF       |                1 |              4 |         4.00 |
 |  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/u_UART_Rx/tick_count_next         | reset_IBUF       |                2 |              5 |         2.50 |
-|  clk_IBUF_BUFG                        | U_STOPWATCH_CU/FSM_onehot_state_reg[2]_1[0]       | reset_IBUF       |                1 |              5 |         5.00 |
 |  clk_IBUF_BUFG                        | U_CLOCK/o_hour[4]_i_1_n_0                         | reset_IBUF       |                2 |              5 |         2.50 |
+|  clk_IBUF_BUFG                        | U_STOPWATCH_CU/FSM_onehot_state_reg[2]_1[0]       | reset_IBUF       |                1 |              5 |         5.00 |
 |  clk_IBUF_BUFG                        | U_CLOCK/o_sec[5]_i_1_n_0                          | reset_IBUF       |                2 |              6 |         3.00 |
 |  clk_IBUF_BUFG                        | U_CLOCK/o_min[5]_i_1_n_0                          | reset_IBUF       |                2 |              6 |         3.00 |
 |  clk_IBUF_BUFG                        | U_STOPWATCH_CU/E[0]                               | reset_IBUF       |                3 |              6 |         2.00 |
 |  clk_IBUF_BUFG                        | U_STOPWATCH_CU/FSM_onehot_state_reg[2]_0[0]       | reset_IBUF       |                2 |              6 |         3.00 |
 |  clk_IBUF_BUFG                        | U_CLOCK/o_msec[6]_i_1_n_0                         | reset_IBUF       |                3 |              7 |         2.33 |
 |  clk_IBUF_BUFG                        | U_STOPWATCH_DP/U_clk_div/E[0]                     | reset_IBUF       |                3 |              7 |         2.33 |
-|  clk_IBUF_BUFG                        | U_CLOCK/debounce_count_min[7]_i_1_n_0             | reset_IBUF       |                2 |              8 |         4.00 |
-|  clk_IBUF_BUFG                        | U_CLOCK/debounce_count_hour[7]_i_1_n_0            | reset_IBUF       |                3 |              8 |         2.67 |
-|  clk_IBUF_BUFG                        | U_CLOCK/debounce_count_sec[7]_i_1_n_0             | reset_IBUF       |                2 |              8 |         4.00 |
-|  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/U_uart_tx/temp_data_next          | reset_IBUF       |                2 |              8 |         4.00 |
 |  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/U_UART_CU/tx_wr_i_1_n_0           | reset_IBUF       |                4 |              8 |         2.00 |
-|  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/U_UART_CU/E[0]                    |                  |                2 |             16 |         8.00 |
+|  clk_IBUF_BUFG                        | U_CLOCK/debounce_count_sec[7]_i_1_n_0             | reset_IBUF       |                2 |              8 |         4.00 |
+|  clk_IBUF_BUFG                        | U_CLOCK/debounce_count_hour[7]_i_1_n_0            | reset_IBUF       |                3 |              8 |         2.67 |
+|  clk_IBUF_BUFG                        | U_CLOCK/debounce_count_min[7]_i_1_n_0             | reset_IBUF       |                2 |              8 |         4.00 |
+|  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/U_uart_tx/temp_data_next          | reset_IBUF       |                2 |              8 |         4.00 |
 |  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/U_UART_CU/rx_data_shift_reg0      | reset_IBUF       |                4 |             16 |         4.00 |
+|  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/U_UART_CU/E[0]                    |                  |                2 |             16 |         8.00 |
 |  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/u_UART_Rx/E[0]                    |                  |                2 |             16 |         8.00 |
 |  clk_IBUF_BUFG                        | U_UART_FIFO_TOP/U_UART_CU/button_timer[0]_i_1_n_0 | reset_IBUF       |                5 |             20 |         4.00 |
 |  clk_IBUF_BUFG                        | U_STOPWATCH_CU/FSM_onehot_state_reg[1]_0[0]       | reset_IBUF       |                6 |             23 |         3.83 |

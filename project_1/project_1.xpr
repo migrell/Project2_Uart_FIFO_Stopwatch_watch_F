@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="54" Path="C:/Users/parkj/Desktop/Verilog_Project2_UART_FIFO_STOPWATCH_WATCH/project_1/project_1.xpr">
+<Project Version="7" Minor="54" Path="C:/Users/parkj/Desktop/Project2_Uart_FIFO_Stopwatch_watch/project_1/project_1.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="6af5f446077948ab9f4d47bd144f7844"/>

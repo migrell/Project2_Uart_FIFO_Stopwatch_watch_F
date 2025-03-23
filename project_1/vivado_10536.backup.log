@@ -1,0 +1,438 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Sun Mar 23 10:28:48 2025
+# Process ID: 10536
+# Current directory: C:/Users/parkj/Desktop/Project2_Uart_FIFO_Stopwatch_watch/project_1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent13356 C:\Users\parkj\Desktop\Project2_Uart_FIFO_Stopwatch_watch\project_1\project_1.xpr
+# Log file: C:/Users/parkj/Desktop/Project2_Uart_FIFO_Stopwatch_watch/project_1/vivado.log
+# Journal file: C:/Users/parkj/Desktop/Project2_Uart_FIFO_Stopwatch_watch/project_1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/parkj/Desktop/Project2_Uart_FIFO_Stopwatch_watch/project_1/project_1.xpr
+INFO: [Project 1-313] Project file moved from 'C:/Users/parkj/Desktop/Verilog_Project2_UART_FIFO_STOPWATCH_WATCH/project_1' since last save.
+WARNING: [filemgmt 56-2] Default IP Output Path : Could not find the directory 'C:/Users/parkj/Desktop/Project2_Uart_FIFO_Stopwatch_watch/project_1/project_1.gen/sources_1', nor could it be found using path 'C:/Users/parkj/Desktop/Verilog_Project2_UART_FIFO_STOPWATCH_WATCH/project_1/project_1.gen/sources_1'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/migtell/Vivado/2020.2/data/ip'.
+update_compile_order -fileset sources_1
+close_project
+create_project project_2 C:/Users/parkj/Desktop/testtest/project_2 -part xc7a35tcpg236-1
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/migtell/Vivado/2020.2/data/ip'.
+set_property board_part digilentinc.com:basys3:part0:1.1 [current_project]
+add_files -norecurse {C:/Users/parkj/Desktop/backup/ram_ip.v C:/Users/parkj/Desktop/backup/led.v C:/Users/parkj/Desktop/backup/display.v C:/Users/parkj/Desktop/backup/fifo.v C:/Users/parkj/Desktop/backup/ctr_watch.v C:/Users/parkj/Desktop/backup/fnd.v C:/Users/parkj/Desktop/backup/cu.v C:/Users/parkj/Desktop/backup/dp.v C:/Users/parkj/Desktop/backup/uart.top.v C:/Users/parkj/Desktop/backup/register.v C:/Users/parkj/Desktop/backup/btn.v C:/Users/parkj/Desktop/backup/top.v C:/Users/parkj/Desktop/backup/uart.cu.v C:/Users/parkj/Desktop/backup/clock.v C:/Users/parkj/Desktop/backup/fsm.v}
+add_files -fileset constrs_1 -norecurse C:/verilog/Basys-3-Master.xdc
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+set_property top uart_fifo_top [current_fileset]
+update_compile_order -fileset sources_1
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+Command: synth_design -rtl -rtl_skip_mlo -name rtl_1
+Starting synth_design
+Using part: xc7a35tcpg236-1
+Top: uart_fifo_top
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 1686.363 ; gain = 247.254
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'uart_fifo_top' [C:/Users/parkj/Desktop/backup/uart.top.v:2]
+INFO: [Synth 8-6157] synthesizing module 'uart_cu' [C:/Users/parkj/Desktop/backup/uart.cu.v:1]
+	Parameter IDLE bound to: 2'b00 
+	Parameter READ_CMD bound to: 2'b01 
+	Parameter PROCESS_CMD bound to: 2'b10 
+	Parameter SEND_RESPONSE bound to: 2'b11 
+	Parameter CMD_RUN bound to: 8'b01010010 
+	Parameter CMD_RUN_LOWER bound to: 8'b01110010 
+	Parameter CMD_CLEAR bound to: 8'b01000011 
+	Parameter CMD_CLEAR_LOWER bound to: 8'b01100011 
+	Parameter CMD_HOUR bound to: 8'b01001000 
+	Parameter CMD_HOUR_LOWER bound to: 8'b01101000 
+	Parameter CMD_MIN bound to: 8'b01001101 
+	Parameter CMD_MIN_LOWER bound to: 8'b01101101 
+	Parameter CMD_SEC bound to: 8'b01010011 
+	Parameter CMD_SEC_LOWER bound to: 8'b01110011 
+INFO: [Synth 8-226] default block is never used [C:/Users/parkj/Desktop/backup/uart.cu.v:194]
+INFO: [Synth 8-6155] done synthesizing module 'uart_cu' (1#1) [C:/Users/parkj/Desktop/backup/uart.cu.v:1]
+INFO: [Synth 8-6157] synthesizing module 'FIFO' [C:/Users/parkj/Desktop/backup/fifo.v:4]
+INFO: [Synth 8-6157] synthesizing module 'register_file' [C:/Users/parkj/Desktop/backup/fifo.v:44]
+INFO: [Synth 8-6155] done synthesizing module 'register_file' (2#1) [C:/Users/parkj/Desktop/backup/fifo.v:44]
+INFO: [Synth 8-6157] synthesizing module 'FIFO_control_unit' [C:/Users/parkj/Desktop/backup/fifo.v:71]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/parkj/Desktop/backup/fifo.v:114]
+INFO: [Synth 8-6155] done synthesizing module 'FIFO_control_unit' (3#1) [C:/Users/parkj/Desktop/backup/fifo.v:71]
+INFO: [Synth 8-6155] done synthesizing module 'FIFO' (4#1) [C:/Users/parkj/Desktop/backup/fifo.v:4]
+INFO: [Synth 8-6157] synthesizing module 'uart_tx' [C:/Users/parkj/Desktop/backup/uart.top.v:147]
+	Parameter IDLE bound to: 3'b000 
+	Parameter START bound to: 3'b001 
+	Parameter DATA bound to: 3'b010 
+	Parameter STOP bound to: 3'b011 
+INFO: [Synth 8-6155] done synthesizing module 'uart_tx' (5#1) [C:/Users/parkj/Desktop/backup/uart.top.v:147]
+WARNING: [Synth 8-7071] port 'o_state' of module 'uart_tx' is unconnected for instance 'U_uart_tx' [C:/Users/parkj/Desktop/backup/uart.top.v:107]
+WARNING: [Synth 8-7071] port 'o_bit_count' of module 'uart_tx' is unconnected for instance 'U_uart_tx' [C:/Users/parkj/Desktop/backup/uart.top.v:107]
+WARNING: [Synth 8-7071] port 'o_tick_count' of module 'uart_tx' is unconnected for instance 'U_uart_tx' [C:/Users/parkj/Desktop/backup/uart.top.v:107]
+WARNING: [Synth 8-7023] instance 'U_uart_tx' of module 'uart_tx' has 10 connections declared, but only 7 given [C:/Users/parkj/Desktop/backup/uart.top.v:107]
+INFO: [Synth 8-6157] synthesizing module 'baud_tick_gen' [C:/Users/parkj/Desktop/backup/uart.top.v:474]
+	Parameter BAUD_RATE bound to: 9600 - type: integer 
+	Parameter BAUD_COUNT bound to: 651 - type: integer 
+	Parameter COUNTER_WIDTH bound to: 10 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'baud_tick_gen' (6#1) [C:/Users/parkj/Desktop/backup/uart.top.v:474]
+INFO: [Synth 8-6157] synthesizing module 'uart_rx' [C:/Users/parkj/Desktop/backup/uart.top.v:280]
+	Parameter IDLE bound to: 0 - type: integer 
+	Parameter START bound to: 1 - type: integer 
+	Parameter DATA bound to: 2 - type: integer 
+	Parameter STOP bound to: 3 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'uart_rx' (7#1) [C:/Users/parkj/Desktop/backup/uart.top.v:280]
+INFO: [Synth 8-6155] done synthesizing module 'uart_fifo_top' (8#1) [C:/Users/parkj/Desktop/backup/uart.top.v:2]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1741.867 ; gain = 302.758
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1755.586 ; gain = 316.477
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1755.586 ; gain = 316.477
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1755.586 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [C:/verilog/Basys-3-Master.xdc]
+WARNING: [Vivado 12-584] No ports matched 'hw_sw[0]'. [C:/verilog/Basys-3-Master.xdc:11]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:11]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'hw_sw[1]'. [C:/verilog/Basys-3-Master.xdc:12]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:12]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'led[0]'. [C:/verilog/Basys-3-Master.xdc:15]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:15]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'led[1]'. [C:/verilog/Basys-3-Master.xdc:16]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:16]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'led[2]'. [C:/verilog/Basys-3-Master.xdc:17]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:17]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'led[3]'. [C:/verilog/Basys-3-Master.xdc:18]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:18]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'fnd_font[0]'. [C:/verilog/Basys-3-Master.xdc:21]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:21]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'fnd_font[1]'. [C:/verilog/Basys-3-Master.xdc:22]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:22]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'fnd_font[2]'. [C:/verilog/Basys-3-Master.xdc:23]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:23]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'fnd_font[3]'. [C:/verilog/Basys-3-Master.xdc:24]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:24]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'fnd_font[4]'. [C:/verilog/Basys-3-Master.xdc:25]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:25]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'fnd_font[5]'. [C:/verilog/Basys-3-Master.xdc:26]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:26]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'fnd_font[6]'. [C:/verilog/Basys-3-Master.xdc:27]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:27]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'fnd_font[7]'. [C:/verilog/Basys-3-Master.xdc:28]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:28]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'fnd_comm[0]'. [C:/verilog/Basys-3-Master.xdc:30]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:30]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'fnd_comm[1]'. [C:/verilog/Basys-3-Master.xdc:31]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:31]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'fnd_comm[2]'. [C:/verilog/Basys-3-Master.xdc:32]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:32]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'fnd_comm[3]'. [C:/verilog/Basys-3-Master.xdc:33]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:33]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'reset'. [C:/verilog/Basys-3-Master.xdc:36]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:36]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'btn_clear'. [C:/verilog/Basys-3-Master.xdc:37]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:37]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'btn_run'. [C:/verilog/Basys-3-Master.xdc:38]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:38]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+Finished Parsing XDC File [C:/verilog/Basys-3-Master.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1878.105 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+RTL Elaboration Complete:  : Time (s): cpu = 00:00:09 ; elapsed = 00:00:06 . Memory (MB): peak = 1943.277 ; gain = 504.168
+21 Infos, 25 Warnings, 21 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:11 ; elapsed = 00:00:09 . Memory (MB): peak = 1943.277 ; gain = 785.309
+refresh_design
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [C:/verilog/Basys-3-Master.xdc]
+WARNING: [Vivado 12-584] No ports matched 'hw_sw[0]'. [C:/verilog/Basys-3-Master.xdc:11]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:11]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'hw_sw[1]'. [C:/verilog/Basys-3-Master.xdc:12]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:12]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'led[0]'. [C:/verilog/Basys-3-Master.xdc:15]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:15]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'led[1]'. [C:/verilog/Basys-3-Master.xdc:16]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:16]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'led[2]'. [C:/verilog/Basys-3-Master.xdc:17]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:17]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'led[3]'. [C:/verilog/Basys-3-Master.xdc:18]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:18]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'fnd_font[0]'. [C:/verilog/Basys-3-Master.xdc:21]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:21]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'fnd_font[1]'. [C:/verilog/Basys-3-Master.xdc:22]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:22]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'fnd_font[2]'. [C:/verilog/Basys-3-Master.xdc:23]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:23]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'fnd_font[3]'. [C:/verilog/Basys-3-Master.xdc:24]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:24]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'fnd_font[4]'. [C:/verilog/Basys-3-Master.xdc:25]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:25]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'fnd_font[5]'. [C:/verilog/Basys-3-Master.xdc:26]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:26]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'fnd_font[6]'. [C:/verilog/Basys-3-Master.xdc:27]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:27]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'fnd_font[7]'. [C:/verilog/Basys-3-Master.xdc:28]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:28]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'fnd_comm[0]'. [C:/verilog/Basys-3-Master.xdc:30]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:30]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'fnd_comm[1]'. [C:/verilog/Basys-3-Master.xdc:31]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:31]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'fnd_comm[2]'. [C:/verilog/Basys-3-Master.xdc:32]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:32]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'fnd_comm[3]'. [C:/verilog/Basys-3-Master.xdc:33]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:33]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'reset'. [C:/verilog/Basys-3-Master.xdc:36]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:36]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'btn_clear'. [C:/verilog/Basys-3-Master.xdc:37]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:37]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'btn_run'. [C:/verilog/Basys-3-Master.xdc:38]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/verilog/Basys-3-Master.xdc:38]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+Finished Parsing XDC File [C:/verilog/Basys-3-Master.xdc]
+Completed Processing XDC Constraints
+
+set_property top top_stopwatch [current_fileset]
+update_compile_order -fileset sources_1
+refresh_design
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:04 . Memory (MB): peak = 2088.297 ; gain = 70.414
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'top_stopwatch' [C:/Users/parkj/Desktop/backup/top.v:3]
+INFO: [Synth 8-6157] synthesizing module 'btn_debounce' [C:/Users/parkj/Desktop/backup/btn.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'btn_debounce' (1#1) [C:/Users/parkj/Desktop/backup/btn.v:1]
+INFO: [Synth 8-6157] synthesizing module 'uart_fifo_top' [C:/Users/parkj/Desktop/backup/uart.top.v:2]
+INFO: [Synth 8-6157] synthesizing module 'uart_cu' [C:/Users/parkj/Desktop/backup/uart.cu.v:1]
+	Parameter IDLE bound to: 2'b00 
+	Parameter READ_CMD bound to: 2'b01 
+	Parameter PROCESS_CMD bound to: 2'b10 
+	Parameter SEND_RESPONSE bound to: 2'b11 
+	Parameter CMD_RUN bound to: 8'b01010010 
+	Parameter CMD_RUN_LOWER bound to: 8'b01110010 
+	Parameter CMD_CLEAR bound to: 8'b01000011 
+	Parameter CMD_CLEAR_LOWER bound to: 8'b01100011 
+	Parameter CMD_HOUR bound to: 8'b01001000 
+	Parameter CMD_HOUR_LOWER bound to: 8'b01101000 
+	Parameter CMD_MIN bound to: 8'b01001101 
+	Parameter CMD_MIN_LOWER bound to: 8'b01101101 
+	Parameter CMD_SEC bound to: 8'b01010011 
+	Parameter CMD_SEC_LOWER bound to: 8'b01110011 
+INFO: [Synth 8-226] default block is never used [C:/Users/parkj/Desktop/backup/uart.cu.v:194]
+INFO: [Synth 8-6155] done synthesizing module 'uart_cu' (2#1) [C:/Users/parkj/Desktop/backup/uart.cu.v:1]
+INFO: [Synth 8-6157] synthesizing module 'FIFO' [C:/Users/parkj/Desktop/backup/fifo.v:4]
+INFO: [Synth 8-6157] synthesizing module 'register_file' [C:/Users/parkj/Desktop/backup/fifo.v:44]
+INFO: [Synth 8-6155] done synthesizing module 'register_file' (3#1) [C:/Users/parkj/Desktop/backup/fifo.v:44]
+INFO: [Synth 8-6157] synthesizing module 'FIFO_control_unit' [C:/Users/parkj/Desktop/backup/fifo.v:71]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/parkj/Desktop/backup/fifo.v:114]
+INFO: [Synth 8-6155] done synthesizing module 'FIFO_control_unit' (4#1) [C:/Users/parkj/Desktop/backup/fifo.v:71]
+INFO: [Synth 8-6155] done synthesizing module 'FIFO' (5#1) [C:/Users/parkj/Desktop/backup/fifo.v:4]
+INFO: [Synth 8-6157] synthesizing module 'uart_tx' [C:/Users/parkj/Desktop/backup/uart.top.v:147]
+	Parameter IDLE bound to: 3'b000 
+	Parameter START bound to: 3'b001 
+	Parameter DATA bound to: 3'b010 
+	Parameter STOP bound to: 3'b011 
+INFO: [Synth 8-6155] done synthesizing module 'uart_tx' (6#1) [C:/Users/parkj/Desktop/backup/uart.top.v:147]
+WARNING: [Synth 8-7071] port 'o_state' of module 'uart_tx' is unconnected for instance 'U_uart_tx' [C:/Users/parkj/Desktop/backup/uart.top.v:107]
+WARNING: [Synth 8-7071] port 'o_bit_count' of module 'uart_tx' is unconnected for instance 'U_uart_tx' [C:/Users/parkj/Desktop/backup/uart.top.v:107]
+WARNING: [Synth 8-7071] port 'o_tick_count' of module 'uart_tx' is unconnected for instance 'U_uart_tx' [C:/Users/parkj/Desktop/backup/uart.top.v:107]
+WARNING: [Synth 8-7023] instance 'U_uart_tx' of module 'uart_tx' has 10 connections declared, but only 7 given [C:/Users/parkj/Desktop/backup/uart.top.v:107]
+INFO: [Synth 8-6157] synthesizing module 'baud_tick_gen' [C:/Users/parkj/Desktop/backup/uart.top.v:474]
+	Parameter BAUD_RATE bound to: 9600 - type: integer 
+	Parameter BAUD_COUNT bound to: 651 - type: integer 
+	Parameter COUNTER_WIDTH bound to: 10 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'baud_tick_gen' (7#1) [C:/Users/parkj/Desktop/backup/uart.top.v:474]
+INFO: [Synth 8-6157] synthesizing module 'uart_rx' [C:/Users/parkj/Desktop/backup/uart.top.v:280]
+	Parameter IDLE bound to: 0 - type: integer 
+	Parameter START bound to: 1 - type: integer 
+	Parameter DATA bound to: 2 - type: integer 
+	Parameter STOP bound to: 3 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'uart_rx' (8#1) [C:/Users/parkj/Desktop/backup/uart.top.v:280]
+INFO: [Synth 8-6155] done synthesizing module 'uart_fifo_top' (9#1) [C:/Users/parkj/Desktop/backup/uart.top.v:2]
+INFO: [Synth 8-6157] synthesizing module 'fsm_controller' [C:/Users/parkj/Desktop/backup/fsm.v:1]
+	Parameter STATE_0 bound to: 2'b00 
+	Parameter STATE_1 bound to: 2'b01 
+	Parameter STATE_2 bound to: 2'b10 
+	Parameter STATE_3 bound to: 2'b11 
+INFO: [Synth 8-6155] done synthesizing module 'fsm_controller' (10#1) [C:/Users/parkj/Desktop/backup/fsm.v:1]
+INFO: [Synth 8-6157] synthesizing module 'stopwatch_cu' [C:/Users/parkj/Desktop/backup/cu.v:6]
+	Parameter STOP bound to: 2'b00 
+	Parameter RUN bound to: 2'b01 
+	Parameter CLEAR bound to: 2'b10 
+WARNING: [Synth 8-6090] variable 'o_run' is written by both blocking and non-blocking assignments, entire logic could be removed [C:/Users/parkj/Desktop/backup/cu.v:50]
+WARNING: [Synth 8-6090] variable 'o_clear' is written by both blocking and non-blocking assignments, entire logic could be removed [C:/Users/parkj/Desktop/backup/cu.v:51]
+WARNING: [Synth 8-6090] variable 'o_run' is written by both blocking and non-blocking assignments, entire logic could be removed [C:/Users/parkj/Desktop/backup/cu.v:54]
+WARNING: [Synth 8-6090] variable 'o_clear' is written by both blocking and non-blocking assignments, entire logic could be removed [C:/Users/parkj/Desktop/backup/cu.v:55]
+WARNING: [Synth 8-6090] variable 'o_clear' is written by both blocking and non-blocking assignments, entire logic could be removed [C:/Users/parkj/Desktop/backup/cu.v:59]
+WARNING: [Synth 8-6090] variable 'o_run' is written by both blocking and non-blocking assignments, entire logic could be removed [C:/Users/parkj/Desktop/backup/cu.v:62]
+WARNING: [Synth 8-6090] variable 'o_clear' is written by both blocking and non-blocking assignments, entire logic could be removed [C:/Users/parkj/Desktop/backup/cu.v:63]
+INFO: [Synth 8-6155] done synthesizing module 'stopwatch_cu' (11#1) [C:/Users/parkj/Desktop/backup/cu.v:6]
+INFO: [Synth 8-6157] synthesizing module 'stopwatch_dp' [C:/Users/parkj/Desktop/backup/dp.v:4]
+INFO: [Synth 8-6157] synthesizing module 'time_counter' [C:/Users/parkj/Desktop/backup/dp.v:74]
+	Parameter TICK_COUNT bound to: 100 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'time_counter' (12#1) [C:/Users/parkj/Desktop/backup/dp.v:74]
+INFO: [Synth 8-6157] synthesizing module 'time_counter__parameterized0' [C:/Users/parkj/Desktop/backup/dp.v:74]
+	Parameter TICK_COUNT bound to: 60 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'time_counter__parameterized0' (12#1) [C:/Users/parkj/Desktop/backup/dp.v:74]
+WARNING: [Synth 8-689] width (6) of port connection 'o_time' does not match port width (7) of module 'time_counter__parameterized0' [C:/Users/parkj/Desktop/backup/dp.v:37]
+WARNING: [Synth 8-689] width (6) of port connection 'o_time' does not match port width (7) of module 'time_counter__parameterized0' [C:/Users/parkj/Desktop/backup/dp.v:47]
+INFO: [Synth 8-6157] synthesizing module 'time_counter__parameterized1' [C:/Users/parkj/Desktop/backup/dp.v:74]
+	Parameter TICK_COUNT bound to: 24 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'time_counter__parameterized1' (12#1) [C:/Users/parkj/Desktop/backup/dp.v:74]
+WARNING: [Synth 8-689] width (5) of port connection 'o_time' does not match port width (7) of module 'time_counter__parameterized1' [C:/Users/parkj/Desktop/backup/dp.v:57]
+INFO: [Synth 8-6157] synthesizing module 'clk_div_100' [C:/Users/parkj/Desktop/backup/dp.v:115]
+	Parameter FCOUNT bound to: 5000000 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'clk_div_100' (13#1) [C:/Users/parkj/Desktop/backup/dp.v:115]
+INFO: [Synth 8-6155] done synthesizing module 'stopwatch_dp' (14#1) [C:/Users/parkj/Desktop/backup/dp.v:4]
+INFO: [Synth 8-6157] synthesizing module 'clock' [C:/Users/parkj/Desktop/backup/clock.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'clock' (15#1) [C:/Users/parkj/Desktop/backup/clock.v:3]
+INFO: [Synth 8-6157] synthesizing module 'display_mux' [C:/Users/parkj/Desktop/backup/display.v:1]
+INFO: [Synth 8-226] default block is never used [C:/Users/parkj/Desktop/backup/display.v:16]
+INFO: [Synth 8-6155] done synthesizing module 'display_mux' (16#1) [C:/Users/parkj/Desktop/backup/display.v:1]
+INFO: [Synth 8-6157] synthesizing module 'fnd_controller' [C:/Users/parkj/Desktop/backup/fnd.v:1]
+INFO: [Synth 8-6157] synthesizing module 'clk_divider' [C:/Users/parkj/Desktop/backup/fnd.v:157]
+	Parameter FCOUNT bound to: 100000 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'clk_divider' (17#1) [C:/Users/parkj/Desktop/backup/fnd.v:157]
+INFO: [Synth 8-6157] synthesizing module 'counter_8' [C:/Users/parkj/Desktop/backup/fnd.v:190]
+INFO: [Synth 8-6155] done synthesizing module 'counter_8' (18#1) [C:/Users/parkj/Desktop/backup/fnd.v:190]
+INFO: [Synth 8-6157] synthesizing module 'decoder_3x8' [C:/Users/parkj/Desktop/backup/fnd.v:212]
+INFO: [Synth 8-226] default block is never used [C:/Users/parkj/Desktop/backup/fnd.v:218]
+INFO: [Synth 8-6155] done synthesizing module 'decoder_3x8' (19#1) [C:/Users/parkj/Desktop/backup/fnd.v:212]
+INFO: [Synth 8-6157] synthesizing module 'digit_splitter' [C:/Users/parkj/Desktop/backup/fnd.v:235]
+	Parameter BIT_WIDTH bound to: 7 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'digit_splitter' (20#1) [C:/Users/parkj/Desktop/backup/fnd.v:235]
+INFO: [Synth 8-6157] synthesizing module 'digit_splitter__parameterized0' [C:/Users/parkj/Desktop/backup/fnd.v:235]
+	Parameter BIT_WIDTH bound to: 6 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'digit_splitter__parameterized0' (20#1) [C:/Users/parkj/Desktop/backup/fnd.v:235]
+INFO: [Synth 8-6157] synthesizing module 'digit_splitter__parameterized1' [C:/Users/parkj/Desktop/backup/fnd.v:235]
+	Parameter BIT_WIDTH bound to: 5 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'digit_splitter__parameterized1' (20#1) [C:/Users/parkj/Desktop/backup/fnd.v:235]
+INFO: [Synth 8-6157] synthesizing module 'bcdtoseg' [C:/Users/parkj/Desktop/backup/fnd.v:307]
+INFO: [Synth 8-226] default block is never used [C:/Users/parkj/Desktop/backup/fnd.v:312]
+INFO: [Synth 8-6155] done synthesizing module 'bcdtoseg' (21#1) [C:/Users/parkj/Desktop/backup/fnd.v:307]
+INFO: [Synth 8-6155] done synthesizing module 'fnd_controller' (22#1) [C:/Users/parkj/Desktop/backup/fnd.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'top_stopwatch' (23#1) [C:/Users/parkj/Desktop/backup/top.v:3]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2124.004 ; gain = 106.121
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2147.891 ; gain = 130.008
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2147.891 ; gain = 130.008
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.007 . Memory (MB): peak = 2165.652 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [C:/verilog/Basys-3-Master.xdc]
+Finished Parsing XDC File [C:/verilog/Basys-3-Master.xdc]
+Completed Processing XDC Constraints
+
+refresh_design: Time (s): cpu = 00:00:12 ; elapsed = 00:00:10 . Memory (MB): peak = 2165.652 ; gain = 147.770
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Sun Mar 23 10:34:19 2025] Launched synth_1...
+Run output will be captured here: C:/Users/parkj/Desktop/testtest/project_2/project_2.runs/synth_1/runme.log
+[Sun Mar 23 10:34:19 2025] Launched impl_1...
+Run output will be captured here: C:/Users/parkj/Desktop/testtest/project_2/project_2.runs/impl_1/runme.log
+open_hw_manager
+connect_hw_server -allow_non_jtag
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-2222] Launching hw_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+****** Xilinx hw_server v2020.2
+  **** Build date : Nov 18 2020 at 10:01:48
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:3042
+INFO: [Labtools 27-3417] Launching cs_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+
+******** Xilinx cs_server v2020.2
+  ****** Build date   : Nov 04 2020-06:02:56
+    **** Build number : 2020.2.1604437376
+      ** Copyright 2017-2020 Xilinx, Inc. All Rights Reserved.
+
+
+
+connect_hw_server: Time (s): cpu = 00:00:00 ; elapsed = 00:00:11 . Memory (MB): peak = 2186.730 ; gain = 17.578
+open_hw_target
+INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210183B9AD18A
+set_property PROGRAM.FILE {C:/Users/parkj/Desktop/testtest/project_2/project_2.runs/impl_1/top_stopwatch.bit} [get_hw_devices xc7a35t_0]
+current_hw_device [get_hw_devices xc7a35t_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a35t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a35t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
+set_property PROGRAM.FILE {C:/Users/parkj/Desktop/testtest/project_2/project_2.runs/impl_1/top_stopwatch.bit} [get_hw_devices xc7a35t_0]
+program_hw_devices [get_hw_devices xc7a35t_0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a35t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+exit
+INFO: [Common 17-206] Exiting Vivado at Sun Mar 23 10:47:04 2025...
