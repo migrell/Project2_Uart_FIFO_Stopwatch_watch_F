@@ -11,3 +11,4 @@
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/parkj/Desktop/Project2_Uart_FIFO_Stopwatch_watch/project_1/project_1.xpr
+update_compile_order -fileset sources_1
